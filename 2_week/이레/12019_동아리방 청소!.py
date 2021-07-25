@@ -38,6 +38,8 @@ def traceback(cnt, state):
     for i in range(1, n):
         if cnt==0:
             break
+
+
         if dp[i + 1][cnt][state] >= dp[i + 1][cnt - 1][i]:
             state=i
             print(i, end=" ")

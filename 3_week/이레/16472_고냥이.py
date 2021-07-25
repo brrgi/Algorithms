@@ -4,7 +4,6 @@ now = set()
 start = 0
 end = 0
 alp = [0 for i in range(26)]
-# print(alp)
 result = 0
 
 while end < len(strs):
@@ -20,6 +19,6 @@ while end < len(strs):
             alp[ord(strs[start]) - 97] -= 1
             if alp[ord(strs[start]) - 97] == 0:
                 now.remove(strs[start])
-            start+=1
+            start += 1
     result = max(result, end - start)
 print(result)

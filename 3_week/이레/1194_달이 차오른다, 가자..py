@@ -28,7 +28,7 @@ while queue:
     z = data[2]
 
     if maps[row][col] == '1':
-        result = visit[row][col][z]     #출구 중 아무거나 도착하면 끝
+        result = visit[row][col][z]                                 #출구 중 아무거나 도착하면 끝
         break
 
     for d in dir:

@@ -19,7 +19,7 @@ start = 0
 
 for i in range(n):
     start = max(start, dp[i])
-    print(start, dp)
+    print(i, start, dp)
     if i + t[i] > n:        #n일을 넘어버리는 경우
         continue
     dp[i + t[i]] = max(dp[i + t[i]], start + p[i])      #현재가 아닌 t[i]일 후의 dp를 갱신

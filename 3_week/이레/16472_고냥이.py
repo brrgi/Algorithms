@@ -21,4 +21,5 @@ while end < len(strs):
                 now.remove(strs[start])
             start += 1
     result = max(result, end - start)
+    print(now, alp)
 print(result)

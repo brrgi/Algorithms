@@ -28,7 +28,6 @@ for i in range(1, h + 1):
     else:
         ans[i - 1] += len(top)
 
-for i in range(1, h + 1):
     start = 0
     end = len(top) - 1
     result = -1
@@ -43,5 +42,6 @@ for i in range(1, h + 1):
         ans[h - i] += result
     else:
         ans[h - i] += len(top)
+
 
 print(n - max(ans), ans.count(max(ans)))

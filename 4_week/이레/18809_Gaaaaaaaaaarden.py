@@ -35,6 +35,7 @@ def make_combination(strs, red, green, idx):
         make_combination(strs, red, green + 1, idx + 1)
 make_combination(start, 0, 0, 0)
 
+
 for case in cases:
     new_maps = deepcopy(maps)
     res=0
@@ -83,6 +84,8 @@ for case in cases:
                             if color[g_row][g_col] == 1 and new_maps[g_row][g_col]!=3:
                                 new_maps[g_row][g_col]=3
                                 res+=1
+
+
 
     ans=max(ans, res)
 print(ans)

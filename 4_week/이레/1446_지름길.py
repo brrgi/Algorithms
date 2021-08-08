@@ -15,4 +15,5 @@ for i in range(d + 1):
         if i == j[0]:
             dp[j[1]] = min(dp[j[1]], dp[j[0]] + j[2])
 
+
 print(dp[-1])

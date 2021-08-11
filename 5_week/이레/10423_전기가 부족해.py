@@ -1,5 +1,5 @@
 n, m, k = map(int, input().split())
-number = list(map(int, input().split()))
+number = set(map(int, input().split()))
 graph={
     'vertices':[
         i+1 for i in range(n)
@@ -14,49 +14,42 @@ for i in range(m):
 
 # 부모 노드 값 저장
 parent = dict()
-# 각각의 노드의 높이 번호
-rank = dict()
-
-def initialization(node):
-    parent[node] = node
-    rank[node] = 0
 
 def find(node):
-    # path compression
     if parent[node] != node:
-        parent[node] = find(parent[node])
+        return find(parent[node])
     return parent[node]
 
 def union(node_a, node_b):
-    # union-by-rank
     root_a = find(node_a)
     root_b = find(node_b)
 
-    if rank[root_a] > rank[root_b]:
-        parent[root_b] = root_a
+    if root_a in number:            #1. a의 root가 발전소일 때
+        parent[root_b]=root_a
     else:
-        parent[root_a] = root_b
+        parent[root_a]=root_b       #2. b의 root가 발전소일 때
 
-        if rank[root_a] == rank[root_b]:
-            rank[root_b] += 1
 
 def kruskal(graph):
     mst = []
 
-    # 초기화
     for node in graph['vertices']:
-        initialization(node)
-    # 간선을 오름차순으로 정렬
+        parent[node] = node
     edges = graph['edges']
-    edges.sort()        #weight 기준으로 정렬
+    edges.sort(key=lambda x:x[0])        #weight 기준으로 정렬
 
-    # 사이클 확인 후 연결
+
     for edge in edges:
         weight, node_a, node_b = edge
-        if find(node_a) != find(node_b):
-            union(node_a, node_b)
+        if find(node_a) in number and find(node_b) in number:       #root가 둘 다 발전소일 때
+            continue
+        if find(node_a) != find(node_b):        #부모가 서로 다를 때
+            union(node_a, node_b)               #합치기
             mst.append(edge)
 
     return mst
 
-print(kruskal(graph))
+result=0
+for i in kruskal(graph):
+    result+=i[0]
+print(result)

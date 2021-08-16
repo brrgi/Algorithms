@@ -1,54 +1,55 @@
+import sys
 from collections import deque
 
 n, a, b = map(int, input().split())
+dir=[-1,1]
+five_visit=[[0 for _ in range(20)] for _ in range(500001)]
+six_visit=[[0 for _ in range(20)] for _ in range(500001)]
+five_queue=deque()
+six_queue=deque()
+ans=sys.maxsize
+for i in range(500001):
+    for j in range(20):
+        five_visit[i][j]=-1
+        six_visit[i][j]=-1
 
-five_queue = deque()
-five_queue.append(a)
-six_queue = deque()
-six_queue.append(b)
+def bfs():
+    five_queue = deque()
+    five_visit[a][0]=0
+    five_queue.append((a,0))
+    while five_queue:
+        now, t = five_queue.popleft()
+        d=1<<t
 
-visit = [[-1 for _ in range(500001)] for _ in range(2)]  # a,b visit 2개
-result=-1
+        for i in range(2):
+            next=now+(d*dir[i])
+            if (1<=next) and next<=n:
+                if five_visit[next][t+1]==-1:
+                    five_visit[next][t+1]=t+1
+                    five_queue.append((next, t+1))
 
-def bfs(start):
-    # print("------------------")
-    if len(five_queue)==0 or len(six_queue)==0:
-        return -1
-    leng1=len(five_queue)
-    for i in range(leng1):
-        data = five_queue.popleft()
 
-        if data - (2 ** start) >= 1:
-            visit[0][data - (2 ** start)] = start
-            five_queue.append(data - (2 ** start))
-        if data + (2 ** start) < 500001:
-            visit[0][data + (2 ** start)] = start
-            five_queue.append(data + (2 ** start))
+def bfs2():
+    global ans
+    six_queue = deque()
+    six_visit[b][0] = 0
+    six_queue.append((b, 0))
+    while six_queue:
+        now, t = six_queue.popleft()
+        d = 1 << t
+        if (five_visit[now][t] != -1 and five_visit[now][t] == six_visit[now][t]):
+            ans = t
+            return
 
-    leng2=len(six_queue)
-    for i in range(leng2):
-        data = six_queue.popleft()
+        for i in range(2):
+            next = now + (d * dir[i])
+            if 1 <= next and next <= n:
+                if six_visit[next][t + 1] == -1:
+                    six_visit[next][t + 1] = t + 1
+                    six_queue.append((next, t + 1))
 
-        if data - (2 ** start) >= 1:
-            visit[1][data - (2 ** start)] = start
-            six_queue.append(data - (2 ** start))
-        if data + (2 ** start) < 500001:
-            visit[1][data + (2 ** start)] = start
-            six_queue.append(data + (2 ** start))
-
-    # print(2**start, five_queue, six_queue)
-    for i in range(1, 500001):
-        if visit[0][i]!=-1:
-            if visit[0][i]==visit[1][i]:
-                return visit[0][i]
-    return 0
-for i in range(30):
-    t=bfs(i)
-
-    if t==-1:
-        result=-1
-        break
-    elif t!=0:
-        result=t+1
-        break
-print(result)
+bfs()
+bfs2()
+if ans==sys.maxsize:
+    ans=-1
+print(ans)

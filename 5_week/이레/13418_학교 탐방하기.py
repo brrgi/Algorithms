@@ -14,7 +14,7 @@ def prim(edges, start_node):
     while candidate_edge_list:
         weight, n2 = heappop(candidate_edge_list)
 
-        if visit[n2]:
+        if visit[n2]:       #둘다 이미 방문했기에
             continue
 
         visit[n2] = True
@@ -36,6 +36,7 @@ for i in range(m + 1):
 
     min_edges[u].append((weight ^ 1, v))
     min_edges[v].append((weight ^ 1, u))
+
     max_edges[u].append((weight, v))
     max_edges[v].append((weight, u))
 

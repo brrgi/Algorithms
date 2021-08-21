@@ -23,7 +23,7 @@ for i in range(n):
     t = list(map(int, input().split()))
     for j in range(len(t)):
         if t[j] == 1:
-            start = [i, j, 1]
+            start = [i, j]
         dic[t[j]]=[i,j]
     maps.append(t)
 
@@ -40,9 +40,9 @@ def bfs():
     while queue and want!=10 and result<100:
         cnt = len(queue)
         result += 1
-        print(want, result)
+        # print(want, result)
         for _ in range(cnt):
-            row, col, number = queue.popleft()
+            row, col = queue.popleft()
 
             #step 1 : 나이트 움직이기
             for i in knight:
@@ -51,16 +51,16 @@ def bfs():
                 if 0 <= new_row < n and 0 <= new_col < n:
                     if visit[new_row][new_col] == False:
                         visit[new_row][new_col] = True
-                        queue.append([new_row, new_col, number + 1])
+                        queue.append([new_row, new_col])
 
             #step 2 : 룩 움직이기
             for i in range(n):
                 if visit[row][i]==False:
                     visit[row][i]=True
-                    queue.append([row, i, number+1])
+                    queue.append([row, i])
                 if visit[i][col]==False:
                     visit[i][col]=True
-                    queue.append([i, col, number+1])
+                    queue.append([i, col])
 
             #step 3 : 비숍 움직이기
             for i in bishop:
@@ -69,11 +69,11 @@ def bfs():
                 if 0 <= new_row < n and 0 <= new_col < n:
                     if visit[new_row][new_col] == False:
                         visit[new_row][new_col] = True
-                        queue.append([new_row, new_col, number + 1])
+                        queue.append([new_row, new_col])
 
             if visit[dic[want][0]][dic[want][1]]==True:
                 queue=deque()
-                queue.append((dic[want][0],dic[want][1],want+1))
+                queue.append((dic[want][0],dic[want][1]))
                 visit = [[False] * n for _ in range(n)]
                 visit[dic[want][0]][dic[want][1]]=True
                 want=want+1

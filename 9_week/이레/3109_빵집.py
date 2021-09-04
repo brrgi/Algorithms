@@ -1,3 +1,7 @@
+'''
+    dfs로 안 겹치게 위부터 다 처리하면 됩니다.
+    - but 끝 열(col)에 도착한 dfs는 flag 역할의 변수를 줘 끝났음을 표시.
+'''
 r, c = map(int, input().split())
 dir = [(-1, 1), (0, 1), (1, 1)]  # 오른쪽, 오른쪽 위 대각선, 오른쪽 아래 대각선
 maps = [list(input()) for _ in range(r)]

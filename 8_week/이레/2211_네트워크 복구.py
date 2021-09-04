@@ -27,5 +27,6 @@ while queue:
 K_distance.pop(0)
 prev.pop(0)
 print(V - 1)
+print(prev)
 for i in range(1, V):
     print(prev[i], i + 1)

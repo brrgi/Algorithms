@@ -3,7 +3,7 @@ from copy import deepcopy
 
 n, m = map(int, input().split())
 maps = [list(input()) for _ in range(n)]
-visit = [[[[0 for _ in range(m)] for _ in range(n)] for _ in range(m)] for _ in range(n)]  # [n][m][n][m]   red blue
+visit = [[[[0 for _ in range(m)] for _ in range(n)] for _ in range(m)] for _ in range(n)]  # visit[n][m][n][m]   red blue
 dir = [(1, 0), (-1, 0), (0, 1), (0, -1)]  # 아래, 위, 오른쪽, 왼쪽
 
 

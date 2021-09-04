@@ -13,6 +13,8 @@ for i in range(t):
         distance[end].append([start, dist])
     input()
     friends = list(map(int, input().split()))
+
+
     for k in friends:
         queue=[]
         k_distance=[INF for _ in range(n+1)]

@@ -23,7 +23,6 @@ while 1:
             for j in go[i]:
                 come[j-1]-=1
             go[i]=[]
-
     if check==0:
         break
 if len(result)!=n:

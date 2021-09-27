@@ -1,3 +1,4 @@
+from copy import deepcopy
 import heapq
 import sys
 from collections import defaultdict
@@ -7,15 +8,15 @@ INF = sys.maxsize
 def solution(n, start, end, roads, traps):
     set_traps = set(traps)
     distance = [[] for _ in range(n + 1)]
-    list_dict=defaultdict(list)
-    for i in set_traps:
-        list_dict[i]        #값을 지정하지 않으면 빈 리스트 생성
+    come=[[] for i in range(n+1)]
+    go=[[] for i in range(n+1)]
     for road in roads:
         s, e, dist = road
-        if e in set_traps:
-            list_dict[e].append(s)
+        go[s].append(e)
+        come[e].append(s)
         distance[s].append([e, dist])
-
+    print(go)
+    print(come)
     queue = []
     k_distance = [INF for _ in range(n + 1)]
     k_distance[start] = 0
@@ -43,9 +44,9 @@ def solution(n, start, end, roads, traps):
     return answer
 
 
-n = 3
+n = 4
 start = 1
-end = 3
-roads = [[1, 2, 2], [3, 2, 3]]
+end = 4
+roads = [[1, 2, 1], [3, 2, 1], [2, 4, 1]]
 traps = [2]
 print(solution(n, start, end, roads, traps))

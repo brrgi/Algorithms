@@ -45,7 +45,6 @@ for i in range(m):
                 if visit[i][j]!=visit[i+r][j+c]:
                     max_value=max(nums[visit[i][j]-1]+nums[visit[i+r][j+c]-1], max_value)
 
-
 print(len(nums))
 print(max(nums))
 print(max_value)

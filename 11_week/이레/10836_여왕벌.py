@@ -22,3 +22,4 @@ for i in range(m):
     for j in range(m,2*m-1):
         print(maps[j], end=' ')
     print()
+

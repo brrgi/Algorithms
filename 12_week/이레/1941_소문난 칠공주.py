@@ -22,14 +22,14 @@ for nums in comb:
     visit = [0 for _ in range(7)]
     for num in nums:
         temp.append(numToLoc(num))
-
-    # rule 1 -> S가 4이상인지
+    print(temp)    # rule 1 -> S가 4이상인지
     s = 0
     for t in temp:
         if maps[t[0]][t[1]] == 'S':
             s += 1
     if s < 4: continue
 
+    print(temp[0])
     # rule 2 -> 다 이어져있는지
     queue = deque()
     queue.append(temp[0])

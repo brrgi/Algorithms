@@ -54,8 +54,6 @@ for i in range(m):
         cmd[1] -= 1
         diff = cmd[2]
         array[cmd[1]] = cmd[2]
-        # print(array, tree)
         update(0, N - 1, 1, cmd[1], diff)
-        # print("변화 후 " ,tree)
     elif cmd[0] == 2:
         print(summit(0, N - 1, 1, cmd[1] - 1, cmd[2] - 1))
